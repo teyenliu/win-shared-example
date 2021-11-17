@@ -1,4 +1,7 @@
-//go build -ldflags -v -x -installsuffix cgo -o example.exe .
+/*
+dynamic link: go build -ldflags -v -x -installsuffix cgo -o example.exe .
+static link : go build -ldflags="-extldflags '-static -lstdc++'" -o example_static.exe .
+*/
 
 package main
 
@@ -12,6 +15,7 @@ import (
 
 #cgo LDFLAGS: -L"./bin/Debug"
 #cgo CFLAGS: -I./
+#cgo LDFLAGS: -lstdc++
 
 #include "example.h"
 */
