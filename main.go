@@ -6,7 +6,7 @@ static link : go build -ldflags="-extldflags '-static -lstdc++'" -o example_stat
 package main
 
 import (
-    "fmt"
+	"fmt"
 )
 
 /*
@@ -22,18 +22,21 @@ import (
 import "C"
 
 func Sum(a, b int) int {
-   return int(C.Sum(C.int(a), C.int(b)))
+	return int(C.Sum(C.int(a), C.int(b)))
 }
 
 func SumAll(nums ...int) int {
-   n := len(nums)
-   v := make([]C.int, n)
-   for i, _ := range nums {
-      v[i] = C.int(nums[i])
-   }
-   return int(C.SumAll(&v[0], C.int(n)))
+	n := len(nums)
+	v := make([]C.int, n)
+	for i, _ := range nums {
+		v[i] = C.int(nums[i])
+	}
+	return int(C.SumAll(&v[0], C.int(n)))
 }
 
-func main () {
-    fmt.Printf("Sum Result: %d", Sum(2, 2))
+func main() {
+	C.SayHello(C.CString("Hello, World...\n"))
+	C.SayHello2(C.CString("Hello 2, World...\n"))
+	C.SayHelloGo(C.CString("Hello Go, World...\n"))
+	fmt.Printf("Sum Result: %d\n", Sum(2, 2))
 }

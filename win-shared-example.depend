@@ -2,5 +2,12 @@
 1637046982 source:c:\users\user\c++projs\win-shared-example\main.cpp
 	"example.h"
 
-1637046968 c:\users\user\c++projs\win-shared-example\example.h
+1637198625 c:\users\user\c++projs\win-shared-example\example.h
+
+1637197601 source:c:\users\user\c++projs\win-shared-example\hello.c
+	<stdio.h>
+
+1637197867 source:c:\users\user\c++projs\win-shared-example\hello2.cpp
+	<iostream>
+	"example.h"
 
