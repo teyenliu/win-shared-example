@@ -1,6 +1,7 @@
 /*
 dynamic link: go build -ldflags -v -x -installsuffix cgo -o example.exe .
 static link : go build -ldflags="-extldflags '-static -lstdc++'" -o example_static.exe .
+using xgo   : xgo -targets windows/amd64 github.com/teyenliu/win-shared-example
 */
 
 package main
@@ -11,10 +12,19 @@ import (
 
 /*
 #cgo windows LDFLAGS: -lwin-shared-example
-#cgo windows CFLAGS: -DWINDOWS
+#cgo windows CFLAGS: -DWINDOWS=1
+#cgo linux CFLAGS: -DLINUX=1
 
-#cgo LDFLAGS: -L"./bin/Debug"
-#cgo CFLAGS: -I./
+#if defined(WINDOWS)
+    const char* os = "windows";
+#elif defined(LINUX)
+    const char* os = "linux";
+#else
+#    error(unknown os)
+#endif
+
+#cgo LDFLAGS: -L${SRCDIR}/bin/Debug
+#cgo CFLAGS: -I${SRCDIR}/
 #cgo LDFLAGS: -lstdc++
 
 #include "example.h"
@@ -39,4 +49,5 @@ func main() {
 	C.SayHello2(C.CString("Hello 2, World...\n"))
 	C.SayHelloGo(C.CString("Hello Go, World...\n"))
 	fmt.Printf("Sum Result: %d\n", Sum(2, 2))
+	fmt.Printf("OS: %s\n", C.GoString(C.os))
 }

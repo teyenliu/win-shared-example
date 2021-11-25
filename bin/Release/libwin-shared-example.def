@@ -1,0 +1,5 @@
+EXPORTS
+    SayHello @1
+    SayHello2 @2
+    Sum @3
+    SumAll @4
