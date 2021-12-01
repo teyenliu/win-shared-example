@@ -1,11 +1,18 @@
 SOURCE_FILES = ../main.cpp ../hello.c ../hello2.cpp
+OBJ_FILES = main.o hello.o hello2.o
 
-CXXFLAGS = -fPIC -std=c++11 -shared -I../
+CXXFLAGS = -fPIC -std=c++11 -I../
 
-all: shared
+all: shared static
 
 clean:
-        rm ../*.so
+	rm ../*.so
+	rm ../*.a
+	rm *.o
 
 shared:
-        g++ -shared ${CXXFLAGS} ${SOURCE_FILES} -o linux-shared-example.so
+	g++ -shared ${CXXFLAGS} ${SOURCE_FILES} -o ../liblinux-shared-example.so
+
+static:
+	g++ ${CXXFLAGS} -c ${SOURCE_FILES}
+	ar rcs ../liblinux-shared-example.a ${OBJ_FILES} 

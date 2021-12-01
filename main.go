@@ -1,6 +1,8 @@
 /*
-dynamic link: go build -ldflags -v -x -installsuffix cgo -o example.exe .
+dynamic link(on windows): go build -ldflags -v -x -installsuffix cgo -o example.exe .
+dynamic link(on linux)  : go build -ldflags -v -x -installsuffix cgo -o example .
 static link : go build -ldflags="-extldflags '-static -lstdc++'" -o example_static.exe .
+static link : go build -ldflags="-extldflags '-static -lstdc++'" -o example_static .
 using xgo   : xgo -targets windows/amd64 github.com/teyenliu/win-shared-example
 */
 
@@ -13,7 +15,7 @@ import (
 /*
 #cgo windows LDFLAGS: -lwin-shared-example
 #cgo windows CFLAGS: -DWINDOWS=1
-#cgo linux LDFLAGS: -llinux-shared-example
+#cgo linux LDFLAGS: -L./ -Wl,-rpath=./ -llinux-shared-example
 #cgo linux CFLAGS: -DLINUX=1
 
 #if defined(WINDOWS)
