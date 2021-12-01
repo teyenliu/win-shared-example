@@ -6,9 +6,7 @@ CXXFLAGS = -fPIC -std=c++11 -I../
 all: shared static
 
 clean:
-	rm ../*.so
-	rm ../*.a
-	rm *.o
+	rm ../*.so ../*.a *.o ../liblinux-shared-example.so ../liblinux-shared-example.a
 
 shared:
 	g++ -shared ${CXXFLAGS} ${SOURCE_FILES} -o ../liblinux-shared-example.so

@@ -1,4 +1,4 @@
-/*
+/* the explaination of build cgo on go
 dynamic link(on windows): go build -ldflags -v -x -installsuffix cgo -o example.exe .
 dynamic link(on linux)  : go build -ldflags -v -x -installsuffix cgo -o example .
 static link : go build -ldflags="-extldflags '-static -lstdc++'" -o example_static.exe .
