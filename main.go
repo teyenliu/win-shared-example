@@ -13,9 +13,10 @@ import (
 )
 
 /*
-#cgo windows LDFLAGS: -lwin-shared-example
-#cgo windows CFLAGS: -DWINDOWS=1
+#cgo windows LDFLAGS: -L./ -lwin-shared-example
 #cgo linux LDFLAGS: -L./ -Wl,-rpath=./ -llinux-shared-example
+#cgo LDFLAGS: -lstdc++
+#cgo windows CFLAGS: -DWINDOWS=1
 #cgo linux CFLAGS: -DLINUX=1
 
 #if defined(WINDOWS)
